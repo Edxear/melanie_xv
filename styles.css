@@ -45,13 +45,15 @@ section {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
     width: 100%;
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    scroll-snap-align: start; /* Para un scroll suave entre secciones */
+    scroll-snap-align: start;
+    position: relative; /* Necesario para los copos de nieve */
+    overflow: hidden; /* Contiene los copos de nieve */
 }
 
 section:hover {
@@ -60,24 +62,35 @@ section:hover {
 
 h1,
 h2,
-h3 {
+h3,
+p {
     margin-bottom: 15px;
+    position: relative; /* Asegura que el texto esté sobre los copos */
+    z-index: 2; /* Coloca el texto sobre los efectos */
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
     animation: glow 2s infinite alternate;
+    line-height: 1.2;
 }
 
 h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
     text-shadow: 0 0 5px #ffffff;
+    line-height: 1.3;
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    line-height: 1.4;
+}
+
+p {
+    font-size: 1.4rem;
+    line-height: 1.5;
 }
 
 /* Portada */
@@ -87,22 +100,24 @@ h3 {
 }
 
 .photo-frame {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     border: 5px solid white;
     border-radius: 10px;
-    margin: 20px auto;
+    margin: 30px auto;
     overflow: hidden;
     box-shadow: 0 0 20px #00bfff;
     background-color: rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .photo-placeholder {
     color: white;
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 
 /* Temporizador */
@@ -110,37 +125,51 @@ h3 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
+    gap: 15px;
+    margin: 30px 0;
+    position: relative;
+    z-index: 2;
 }
 
 .tiempo {
+    background: rgba(0, 0, 0, 0.3);
+    color: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 90px;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+/* .tiempo {
     background: rgba(0, 191, 255, 0.3);
     color: white;
-    padding: 12px;
-    border-radius: 8px;
-    min-width: 70px;
-    font-size: 1.3rem;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 90px;
+    font-size: 2rem;
     font-weight: bold;
     border: 1px solid rgba(255, 255, 255, 0.2);
-}
+} */
 
 .tiempo span {
     display: block;
-    font-size: 0.7rem;
+    font-size: 1,5rem;
     font-weight: normal;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
-/* Mapa */
+/* Mapa - Tamaño aumentado */
 .mapa-container {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 75%;
-    margin-top: 15px;
-    border-radius: 10px;
+    padding-bottom: 100%; /* Más alto que antes (75%) */
+    margin: 30px 0;
+    border-radius: 15px;
     overflow: hidden;
+    z-index: 2;
 }
 
 .mapa-container iframe {
@@ -156,20 +185,22 @@ h3 {
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 20px;
+    margin: 30px 0;
+    position: relative;
+    z-index: 2;
 }
 
 .social-icon {
     background: rgba(0, 191, 255, 0.3);
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     transition: all 0.3s ease;
     text-decoration: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -184,15 +215,17 @@ h3 {
     background: rgba(0, 191, 255, 0.3);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 25px;
+    padding: 18px 35px;
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 30px 0;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .btn-mercadopago:hover {
@@ -204,13 +237,14 @@ h3 {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid white;
     color: white;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 20px 40px;
+    font-size: 1.8rem;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s;
     backdrop-filter: blur(5px);
-    z-index: 10;
+    z-index: 2;
+    margin: 20px 0;
 }
 
 .btn:hover {
@@ -218,7 +252,7 @@ h3 {
     transform: scale(1.05);
 }
 
-/* Efectos de nieve */
+/* Efectos de nieve - Mantenidos para cada sección */
 .snowflake {
     position: absolute;
     background-color: white;
@@ -244,7 +278,6 @@ h3 {
     from {
         text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
     }
-
     to {
         text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff;
     }
@@ -254,390 +287,99 @@ h3 {
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
 }
 
-/* Opcional: Para un scroll suave entre secciones */
+/* Scroll suave */
 html {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Media Queries */
+@media (min-width: 768px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 5rem;
     }
-
     h2 {
-        font-size: 1.5rem;
+        font-size: 3rem;
     }
-
     h3 {
-        font-size: 1.1rem;
+        font-size: 2rem;
     }
-
-    section {
-        padding: 20px 15px;
+    .photo-frame {
+        width: 250px;
+        height: 250px;
     }
-
-    .tiempo {
-        min-width: 60px;
-        font-size: 1.1rem;
-        padding: 10px;
+    .mapa-container {
+        padding-bottom: 80%; /* Proporción más ancha en desktop */
+        max-width: 700px;
+        margin: 30px auto;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 2rem;
+        font-size: 3.2rem;
     }
-
     h2 {
-        font-size: 1.3rem;
+        font-size: 2.2rem;
     }
-
-    .photo-frame {
-        width: 150px;
-        height: 150px;
-    }
-
-    #cuenta-regresiva {
-        gap: 8px;
-    }
-
-    .tiempo {
-        min-width: 50px;
-        font-size: 1rem;
-        padding: 8px;
-    }
-
-    .tiempo span {
-        font-size: 0.6rem;
-    }
-}
-
-
-/* Estilos generales
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-.pacifico-regular {
-    font-family: "Pacifico", cursive;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.dm-serif-text-regular {
-    font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background: linear-gradient(to bottom, #4e95ec, #3698e8);
-    font-family: 'Arial', sans-serif;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.container {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    z-index: 10;
-    position: relative;
-}
-
-section {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 25px;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-section:hover {
-    transform: translateY(-5px);
-}
-
-h1,
-h2,
-h3 {
-    margin-bottom: 15px;
-}
-
-h1 {
-    font-size: 3rem;
-    text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
-    animation: glow 2s infinite alternate;
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    text-shadow: 0 0 5px #ffffff;
-}
-
-h3 {
-    font-size: 1.2rem;
-}
-
-
-
-#portada {
-    text-align: center;
-    padding: 30px 20px;
-}
-
-.photo-frame {
-    width: 180px;
-    height: 180px;
-    border: 5px solid white;
-    border-radius: 10px;
-    margin: 20px auto;
-    overflow: hidden;
-    box-shadow: 0 0 20px #00bfff;
-    background-color: rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.photo-placeholder {
-    color: white;
-    font-size: 1rem;
-}
-
-
-#cuenta-regresiva {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.tiempo {
-    background: rgba(0, 191, 255, 0.3);
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    min-width: 70px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.tiempo span {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: normal;
-    margin-top: 5px;
-}
-
-
-.mapa-container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 75%;
-    margin-top: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.mapa-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icon {
-    background: rgba(0, 191, 255, 0.3);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.social-icon:hover {
-    transform: scale(1.1);
-    background: rgba(0, 191, 255, 0.5);
-}
-
-.btn-mercadopago {
-    background: rgba(0, 191, 255, 0.3);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-}
-
-.btn-mercadopago:hover {
-    background: rgba(0, 191, 255, 0.5);
-    transform: translateY(-3px);
-}
-
-.btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
-    color: white;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    backdrop-filter: blur(5px);
-    z-index: 10;
-}
-
-.btn:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.05);
-}
-
-
-.snowflake {
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(1px);
-    z-index: 1;
-}
-
-.ice-crystal {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    opacity: 0.8;
-    pointer-events: none;
-    animation: spin 8s linear infinite;
-    z-index: 1;
-}
-
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
-    }
-
-    to {
-        text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff;
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
     h3 {
-        font-size: 1.1rem;
+        font-size: 1.6rem;
     }
-
-    .container {
-        padding: 15px;
+    p {
+        font-size: 1.2rem;
     }
-
-    section {
-        padding: 20px 15px;
-    }
-
     .tiempo {
-        min-width: 60px;
-        font-size: 1.1rem;
-        padding: 10px;
+        min-width: 80px;
+        font-size: 1.8rem;
+        padding: 12px;
+    }
+    .tiempo span {
+        font-size: 0.9rem;
+    }
+    .social-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+    .btn-mercadopago {
+        font-size: 1.3rem;
+        padding: 15px 30px;
+    }
+    .btn {
+        font-size: 1.5rem;
+        padding: 18px 36px;
+    }
+    .mapa-container {
+        padding-bottom: 120%; /* Más alto en móviles */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
     h1 {
+        font-size: 2.8rem;
+    }
+    h2 {
         font-size: 2rem;
     }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
     .photo-frame {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
     }
-
     #cuenta-regresiva {
-        gap: 8px;
+        gap: 10px;
     }
-
     .tiempo {
-        min-width: 50px;
-        font-size: 1rem;
-        padding: 8px;
+        min-width: 70px;
+        font-size: 1.6rem;
     }
-
-    .tiempo span {
-        font-size: 0.6rem;
+    .mapa-container {
+        padding-bottom: 130%; 
     }
 }
 
-*/
 
