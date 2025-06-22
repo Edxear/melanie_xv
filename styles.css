@@ -25,6 +25,12 @@
   font-style: normal;
 }
 
+.dm-serif-text-regular-italic {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
 /* Body y contenedor principal */
 body {
     margin: 0;
