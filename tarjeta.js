@@ -2,19 +2,19 @@ function actualizarTemporizador() {
     const fechaEvento = new Date('2025-10-10T21:30:00').getTime();
     const ahora = new Date().getTime();
     const distancia = fechaEvento - ahora;
-    
+
     // Cálculos
     const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
     const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-    
+
     // Mostrar resultados
     document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
     document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
     document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
     document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
-    
+
     // Si el tiempo ya pasó
     if (distancia < 0) {
         clearInterval(temporizador);
@@ -23,19 +23,84 @@ function actualizarTemporizador() {
 }
 
 // Botón Mercado Pago
-document.querySelector('.btn-mercadopago')?.addEventListener('click', function() {
+document.querySelector('.btn-mercadopago')?.addEventListener('click', function () {
     alert('Serás redirigido a Mercado Pago para realizar tu regalo. ¡Gracias!');
     // window.location.href = 'URL_DE_MERCADO_PAGO';
 });
 
-// Efectos de nieve para cada sección
+// Crear copos de nieve con iconos
 function createSnowflakes() {
+    const container = document.getElementById('snowflakes');
+    if (!container) return;
+    
+    const snowflakeSymbols = ['❄', '❅', '❆', '✻', '✼', '❄', '❅'];
+    const count = 50;
+
+    for (let i = 0; i < count; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+
+        // Seleccionar un símbolo aleatorio
+        const randomSymbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+        snowflake.textContent = randomSymbol;
+
+        // Posición inicial aleatoria
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.top = -Math.random() * 100 + 'vh';
+
+        // Duración de animación aleatoria
+        const duration = 8 + Math.random() * 12;
+        snowflake.style.animationDuration = duration + 's';
+
+        // Retraso inicial aleatorio
+        snowflake.style.animationDelay = Math.random() * 5 + 's';
+
+        // Tamaño adicional aleatorio
+        const sizeVariation = 0.5 + Math.random();
+        snowflake.style.transform = `scale(${sizeVariation})`;
+
+        container.appendChild(snowflake);
+    }
+}
+
+// Crear cristales de hielo
+function createIceCrystals() {
+    const container = document.getElementById('ice-crystals');
+    if (!container) return;
+    
+    const crystalsCount = Math.min(5, Math.floor(window.innerWidth / 100));
+
+    for (let i = 0; i < crystalsCount; i++) {
+        const crystal = document.createElement('div');
+        crystal.classList.add('ice-crystal');
+
+        // Tamaño aleatorio
+        const size = Math.random() * 15 + 10;
+
+        // Forma de cristal
+        crystal.style.borderWidth = `0 ${size / 2}px ${size}px ${size / 2}px`;
+        crystal.style.borderColor = `transparent transparent rgba(200, 240, 255, 0.7) transparent`;
+
+        // Posición aleatoria
+        crystal.style.left = `${Math.random() * 100}%`;
+        crystal.style.top = `${Math.random() * 100}%`;
+
+        // Velocidad de rotación aleatoria
+        crystal.style.animationDuration = `${Math.random() * 10 + 5}s`;
+
+        container.appendChild(crystal);
+    }
+}
+
+// Efectos de nieve para cada sección
+function createSectionSnowflakes() {
     const sections = document.querySelectorAll('section');
     const snowflakesCount = Math.min(20, Math.floor(window.innerWidth / 15));
-    
+
     sections.forEach(section => {
         // Crear contenedor para copos de nieve en esta sección
         const snowContainer = document.createElement('div');
+        snowContainer.className = 'section-snowflakes';
         snowContainer.style.position = 'absolute';
         snowContainer.style.top = '0';
         snowContainer.style.left = '0';
@@ -44,116 +109,194 @@ function createSnowflakes() {
         snowContainer.style.overflow = 'hidden';
         snowContainer.style.pointerEvents = 'none';
         snowContainer.style.zIndex = '1';
-        
+
         section.style.position = 'relative';
         section.appendChild(snowContainer);
-        
+
         // Crear copos de nieve para esta sección
         for (let i = 0; i < snowflakesCount; i++) {
             const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
+            snowflake.className = 'section-snowflake';
             
-            // Tamaño aleatorio
-            const size = Math.random() * 6 + 2;
-            snowflake.style.width = `${size}px`;
-            snowflake.style.height = `${size}px`;
+            const randomSymbol = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+            snowflake.textContent = randomSymbol;
             
-            // Posición inicial aleatoria
-            snowflake.style.left = `${Math.random() * 100}%`;
-            snowflake.style.top = `${-size}px`;
-            
-            // Velocidad y opacidad aleatorias
-            const speed = Math.random() * 2 + 1;
-            const opacity = Math.random() * 0.8 + 0.2;
-            snowflake.style.opacity = opacity;
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.top = -Math.random() * 100 + 'px';
+            snowflake.style.animationDuration = (5 + Math.random() * 15) + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            snowflake.style.opacity = 0.7;
+            snowflake.style.fontSize = (0.5 + Math.random() * 1.5) + 'em';
             
             snowContainer.appendChild(snowflake);
-            
-            // Animación de caída para este copo
-            animateSnowflake(snowflake, speed, section);
-        }
-    });
-}
-
-function animateSnowflake(snowflake, speed, section) {
-    let positionY = parseFloat(snowflake.style.top);
-    let positionX = parseFloat(snowflake.style.left);
-    const drift = Math.random() * 2 - 1; // Movimiento horizontal aleatorio
-    
-    function fall() {
-        positionY += speed;
-        positionX += drift * 0.5;
-        
-        const sectionRect = section.getBoundingClientRect();
-        
-        // Si el copo sale por abajo, volver a arriba
-        if (positionY > sectionRect.height) {
-            positionY = -10;
-            positionX = Math.random() * 100;
-        }
-        
-        // Si el copo sale por los lados, aparecer en el otro lado
-        if (positionX > 100) {
-            positionX = 0;
-        } else if (positionX < 0) {
-            positionX = 100;
-        }
-        
-        snowflake.style.top = `${positionY}px`;
-        snowflake.style.left = `${positionX}%`;
-        
-        requestAnimationFrame(fall);
-    }
-    
-    fall();
-}
-
-function createIceCrystals() {
-    const sections = document.querySelectorAll('section');
-    const crystalsCount = Math.min(5, Math.floor(window.innerWidth / 100));
-    
-    sections.forEach(section => {
-        // Crear cristales de hielo para esta sección
-        for (let i = 0; i < crystalsCount; i++) {
-            const crystal = document.createElement('div');
-            crystal.classList.add('ice-crystal');
-            
-            // Tamaño aleatorio
-            const size = Math.random() * 15 + 10;
-            
-            // Forma de cristal
-            crystal.style.borderWidth = `0 ${size/2}px ${size}px ${size/2}px`;
-            crystal.style.borderColor = `transparent transparent rgba(200, 240, 255, 0.7) transparent`;
-            
-            // Posición aleatoria dentro de la sección
-            crystal.style.left = `${Math.random() * 100}%`;
-            crystal.style.top = `${Math.random() * 100}%`;
-            
-            // Velocidad de rotación aleatoria
-            crystal.style.animationDuration = `${Math.random() * 10 + 5}s`;
-            
-            section.appendChild(crystal);
         }
     });
 }
 
 // Inicialización
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Iniciar temporizador
     const temporizador = setInterval(actualizarTemporizador, 1000);
     actualizarTemporizador();
+
+    // Crear contenedores para efectos si no existen
+    if (!document.getElementById('snowflakes')) {
+        const snowflakesContainer = document.createElement('div');
+        snowflakesContainer.id = 'snowflakes';
+        document.body.appendChild(snowflakesContainer);
+    }
     
-    // Crear efectos de nieve para cada sección
+    if (!document.getElementById('ice-crystals')) {
+        const iceContainer = document.createElement('div');
+        iceContainer.id = 'ice-crystals';
+        document.body.appendChild(iceContainer);
+    }
+
+    // Crear efectos de nieve y cristales
+    createSectionSnowflakes();
     createSnowflakes();
     createIceCrystals();
-    
+
     // Ajustar efectos al cambiar tamaño de pantalla
-    window.addEventListener('resize', function() {
-        document.querySelectorAll('.snowflake, .ice-crystal').forEach(el => el.remove());
+    window.addEventListener('resize', function () {
+        document.querySelectorAll('.snowflake, .ice-crystal, .section-snowflake').forEach(el => el.remove());
+        document.querySelectorAll('.section-snowflakes').forEach(el => el.remove());
         createSnowflakes();
         createIceCrystals();
+        createSectionSnowflakes();
     });
 });
 
+// function actualizarTemporizador() {
+//     const fechaEvento = new Date('2025-10-10T21:30:00').getTime();
+//     const ahora = new Date().getTime();
+//     const distancia = fechaEvento - ahora;
 
+//     // Cálculos
+//     const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+//     const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+//     const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
+//     // Mostrar resultados
+//     document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
+//     document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
+//     document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
+//     document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
+
+//     // Si el tiempo ya pasó
+//     if (distancia < 0) {
+//         clearInterval(temporizador);
+//         document.getElementById('cuenta-regresiva').innerHTML = '<h3>¡El evento ya comenzó!</h3>';
+//     }
+// }
+
+// // Botón Mercado Pago
+// document.querySelector('.btn-mercadopago')?.addEventListener('click', function () {
+//     alert('Serás redirigido a Mercado Pago para realizar tu regalo. ¡Gracias!');
+//     // window.location.href = 'URL_DE_MERCADO_PAGO';
+// });
+
+// // Efectos de nieve para cada sección
+// function createSnowflakes() {
+//     const sections = document.querySelectorAll('section');
+//     const snowflakesCount = Math.min(20, Math.floor(window.innerWidth / 15));
+
+//     sections.forEach(section => {
+//         // Crear contenedor para copos de nieve en esta sección
+//         const snowContainer = document.createElement('div');
+//         snowContainer.style.position = 'absolute';
+//         snowContainer.style.top = '0';
+//         snowContainer.style.left = '0';
+//         snowContainer.style.width = '100%';
+//         snowContainer.style.height = '100%';
+//         snowContainer.style.overflow = 'hidden';
+//         snowContainer.style.pointerEvents = 'none';
+//         snowContainer.style.zIndex = '1';
+
+//         section.style.position = 'relative';
+//         section.appendChild(snowContainer);
+
+//         // Crear copos de nieve con iconos
+//         function createSnowflakes() {
+//             const container = document.getElementById('snowflakes');
+//             const snowflakeSymbols = ['❄', '❅', '❆', '✻', '✼', '❄', '❅'];
+//             const count = 50; // Aumenté el número de copos
+
+//             for (let i = 0; i < count; i++) {
+//                 const snowflake = document.createElement('div');
+//                 snowflake.className = 'snowflake';
+
+//                 // Seleccionar un símbolo aleatorio
+//                 const randomSymbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+//                 snowflake.textContent = randomSymbol;
+
+//                 // Posición inicial aleatoria
+//                 snowflake.style.left = Math.random() * 100 + 'vw';
+//                 snowflake.style.top = -Math.random() * 100 + 'vh';
+
+//                 // Duración de animación aleatoria
+//                 const duration = 8 + Math.random() * 12;
+//                 snowflake.style.animationDuration = duration + 's';
+
+//                 // Retraso inicial aleatorio
+//                 snowflake.style.animationDelay = Math.random() * 5 + 's';
+
+//                 // Tamaño adicional aleatorio
+//                 const sizeVariation = 0.5 + Math.random();
+//                 snowflake.style.transform = `scale(${sizeVariation})`;
+
+//                 container.appendChild(snowflake);
+//             }
+//         }
+
+//         // Crear cristales de hielo
+//         function createIceCrystals() {
+//             const container = document.getElementById('ice-crystals');
+//             const crystalsCount = Math.min(5, Math.floor(window.innerWidth / 100));
+
+//             for (let i = 0; i < crystalsCount; i++) {
+//                 const crystal = document.createElement('div');
+//                 crystal.classList.add('ice-crystal');
+
+//                 // Tamaño aleatorio
+//                 const size = Math.random() * 15 + 10;
+
+//                 // Forma de cristal
+//                 crystal.style.borderWidth = `0 ${size / 2}px ${size}px ${size / 2}px`;
+//                 crystal.style.borderColor = `transparent transparent rgba(200, 240, 255, 0.7) transparent`;
+
+//                 // Posición aleatoria
+//                 crystal.style.left = `${Math.random() * 100}%`;
+//                 crystal.style.top = `${Math.random() * 100}%`;
+
+//                 // Velocidad de rotación aleatoria
+//                 crystal.style.animationDuration = `${Math.random() * 10 + 5}s`;
+
+//                 container.appendChild(crystal);
+//             }
+//         }
+
+//         // Inicialización
+//         document.addEventListener('DOMContentLoaded', function () {
+//             // Iniciar temporizador
+//             const temporizador = setInterval(actualizarTemporizador, 1000);
+//             actualizarTemporizador();
+
+//             // Crear efectos de nieve y cristales
+//             createSnowflakes();
+//             createIceCrystals();
+
+//             // Botón Mercado Pago
+//             document.querySelector('.btn-mercadopago')?.addEventListener('click', function () {
+//                 alert('Serás redirigido a Mercado Pago para realizar tu regalo. ¡Gracias!');
+//                 // window.location.href = 'URL_DE_MERCADO_PAGO';
+//             });
+
+//             // Ajustar efectos al cambiar tamaño de pantalla
+//             window.addEventListener('resize', function () {
+//                 document.querySelectorAll('.snowflake, .ice-crystal').forEach(el => el.remove());
+//                 createSnowflakes();
+//                 createIceCrystals();
+//             });
+//         });
