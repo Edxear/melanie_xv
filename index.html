@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Mis XV Años - Melanie 
-  </title>
+  <title>Mis XV Años - Melanie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Serif+Text&display=swap" rel="stylesheet">
@@ -15,15 +14,15 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-vertical">
     <!-- Portada -->
-<section id="portada-snowflake-ice-crystal">
-  <h1 class="pacifico-regular">Melanie</h1>
-  <h2>Mis XV</h2>
-</section>
+    <section id="portada-snowflake-ice-crystal" class="vertical-section">
+      <h1 class="pacifico-regular">Melanie</h1>
+      <h2>Mis XV</h2>
+    </section>
 
     <!-- Temporizador -->
-    <section id="container temporizador">
+    <section id="temporizador" class="vertical-section">
       <h2 class="dm-serif-text-regular">Comienza la cuenta regresiva para mi gran noche!</h2>
       <div id="cuenta-regresiva">
         <div class="tiempo pacifico-regular display-2">
@@ -47,7 +46,7 @@
     </section>
 
     <!-- Mensaje -->
-    <section class="container texto">
+    <section id="mensaje" class="vertical-section">
       <h2 class="text-center dm-serif-text-regular">Dicen que cuando despertamos tenemos diez segundos para recordar lo que soñamos
         la noche anterior.
         Un sueño que hoy es esta realidad: "Mi fiesta de 15 Años"
@@ -56,7 +55,7 @@
     </section>
 
     <!-- Ubicación -->
-    <section id="container ubicacion">
+    <section id="ubicacion" class="vertical-section">
       <h2><strong>Salón Frigorífico</strong></h2>
       <h3>San Martín 617, Gualeguaychú, Entre Ríos</h3>
       <div class="mapa-container">
@@ -67,13 +66,13 @@
     </section>
 
     <!-- Dress Code -->
-    <section class="container texto">
+    <section id="dress-code" class="vertical-section">
       <h2><strong>Dress Code</strong></h2>
       <h3>ELEGANTE SPORT</h3>
     </section>
 
     <!-- Confirmación -->
-    <section id="container redes-sociales">
+    <section id="confirmacion" class="vertical-section">
       <h2><strong>Confirma tu asistencia!</strong></h2>
       <h3 class="dm-serif-text-regular">Para mi es muy importante que confirmes esta invitación, o que me cuentes si no
         me podes acompañar.</h3>
@@ -88,7 +87,7 @@
     </section>
 
     <!-- Regalos -->
-    <section id="container regalos">
+    <section id="regalos" class="vertical-section">
       <h2 class="dm-serif-text-regular">Ningun regalo es mas valioso que tu cariño, y tu presencia seria mi mejor
         obsequio. Pero si algo me deseas regalar y no sabes que, acá te dejo una sugerencia.
       </h2>
@@ -98,7 +97,7 @@
     </section>
 
     <!-- Música -->
-    <section id="container musica">
+    <section id="musica" class="vertical-section">
       <h2>¿Qué canción no puede faltar en mi fiesta?</h2>
       <h3 class="dm-serif-text-regular">Sugerí tu canción presionando el logo de Spotify.</h3>
       <div class="social-icons">
@@ -110,7 +109,7 @@
     </section>
 
     <!-- Compartir foto -->
-    <section id="container compartir-foto">
+    <section id="compartir-foto" class="vertical-section">
       <h2>Compartí tu foto conmigo! presionando en el logo de Instagram llegarás a mi perfil</h2>
       <div class="social-icons">
         <a href="https://instagram.com/melars_25?igsh=MWh1ajBxcDZh0XBoeQ==" class="social-icon" target="_blank">
@@ -120,6 +119,143 @@
     </section>
 
     <!-- Frase final -->
+    <section id="frase-final" class="vertical-section">
+      <h3 class="dm-serif-text-regular-italic display-4">Se luz cuando el sol se esconde. Disfruta la vida!</h3>
+      <h2 class="pacifico-regular display-1">Melanie</h2>
+    </section>
+  </div>
+
+  <div id="snowflakes"></div>
+  <div id="ice-crystals"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="tarjeta.js"></script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Mis XV Años - Melanie 
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Serif+Text&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    
+<section id="portada-snowflake-ice-crystal">
+  <h1 class="pacifico-regular">Melanie</h1>
+  <h2>Mis XV</h2>
+</section>
+
+    
+    <section id="container temporizador">
+      <h2 class="dm-serif-text-regular">Comienza la cuenta regresiva para mi gran noche!</h2>
+      <div id="cuenta-regresiva">
+        <div class="tiempo pacifico-regular display-2">
+          <span id="dias">00</span>
+          <span>Días</span>
+        </div>
+        <div class="tiempo pacifico-regular display-2">
+          <span id="horas">00</span>
+          <span>Horas</span>
+        </div>
+        <div class="tiempo pacifico-regular display-2">
+          <span id="minutos">00</span>
+          <span>Minutos</span>
+        </div>
+        <div class="tiempo pacifico-regular display-2">
+          <span id="segundos">00</span>
+          <span>Segundos</span>
+        </div>
+      </div>
+      <h3 class="dm-serif-text-regular mt-2">Viernes 10 de Octubre - 21:30hs</h3>
+    </section>
+
+   
+    <section class="container texto">
+      <h2 class="text-center dm-serif-text-regular">Dicen que cuando despertamos tenemos diez segundos para recordar lo que soñamos
+        la noche anterior.
+        Un sueño que hoy es esta realidad: "Mi fiesta de 15 Años"
+        Tu presencia ayudará a transformar mi noche inolvidable en el día más importante de mi vida...
+      </h2>
+    </section>
+
+    
+    <section id="container ubicacion">
+      <h2><strong>Salón Frigorífico</strong></h2>
+      <h3>San Martín 617, Gualeguaychú, Entre Ríos</h3>
+      <div class="mapa-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3392.216876280016!2d-58.5124163!3d-33.0102848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95baa82b9ba6daf5%3A0x71dcdc73e4e2a715!2sSan%20Mart%C3%ADn%20617%2C%20E2820%20Gualeguaych%C3%BA%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses!2sar!4v1718923456789!5m2!1ses!2sar"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    
+    <section class="container texto">
+      <h2><strong>Dress Code</strong></h2>
+      <h3>ELEGANTE SPORT</h3>
+    </section>
+
+    
+    <section id="container redes-sociales">
+      <h2><strong>Confirma tu asistencia!</strong></h2>
+      <h3 class="dm-serif-text-regular">Para mi es muy importante que confirmes esta invitación, o que me cuentes si no
+        me podes acompañar.</h3>
+      <div class="social-icons">
+        <a href="https://wa.me/+5493446522502" class="social-icon" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:3446522502" class="social-icon">
+          <i class="fas fa-phone"></i>
+        </a>
+      </div>
+    </section>
+
+    
+    <section id="container regalos">
+      <h2 class="dm-serif-text-regular">Ningun regalo es mas valioso que tu cariño, y tu presencia seria mi mejor
+        obsequio. Pero si algo me deseas regalar y no sabes que, acá te dejo una sugerencia.
+      </h2>
+      <button class="btn-mercadopago">
+        <i class="fab fa-cc-amazon-pay"></i> Mercado Pago
+      </button>
+    </section>
+
+    
+    <section id="container musica">
+      <h2>¿Qué canción no puede faltar en mi fiesta?</h2>
+      <h3 class="dm-serif-text-regular">Sugerí tu canción presionando el logo de Spotify.</h3>
+      <div class="social-icons">
+        <a href="https://open.spotify.com/playlist/1sx6nVj80KiwQONQ78QV3W?si=tuBWC2UnSPe-a6uMpZAHUg&pt=1ab5cc7c13c7d38bf3340423833cdfea&pi=pKRr4_vXTGWJ6"
+          class="social-icon" target="_blank">
+          <i class="fab fa-spotify"></i>
+        </a>
+      </div>
+    </section>
+
+    
+    <section id="container compartir-foto">
+      <h2>Compartí tu foto conmigo! presionando en el logo de Instagram llegarás a mi perfil</h2>
+      <div class="social-icons">
+        <a href="https://instagram.com/melars_25?igsh=MWh1ajBxcDZh0XBoeQ==" class="social-icon" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </section>
+
+   
     <section id="container frase-final">
       <h3 class="dm-serif-text-regular-italic display-4">Se luz cuando el sol se esconde. Disfruta la vida!</h3>
       <h2 class="pacifico-regular display-1">Melanie</h2>
@@ -130,4 +266,4 @@
 </body>
 
 </html>
-
+ -->
