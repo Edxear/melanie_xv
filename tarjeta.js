@@ -166,6 +166,68 @@ document.addEventListener('DOMContentLoaded', function () {
         createSectionSnowflakes();
     });
 });
+// Función para crear copos de nieve
+function createSnowflakes(event, container) {
+    const symbols = ['❄', '❅', '❆', '✻', '✼'];
+    const rect = container.getBoundingClientRect();
+    
+    // Posición del toque/clic relativa al contenedor
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    // Crear 12-15 copos de nieve
+    const flakeCount = 12 + Math.floor(Math.random() * 4);
+    
+    for (let i = 0; i < flakeCount; i++) {
+        const flake = document.createElement('div');
+        flake.className = 'snow-flake';
+        flake.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // Posición inicial (donde se hizo clic/toque)
+        flake.style.left = `${x}px`;
+        flake.style.top = `${y}px`;
+        
+        // Dirección y distancia aleatoria
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 30 + Math.random() * 70;
+        flake.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+        flake.style.setProperty('--ty', `${Math.sin(angle) * distance - 20}px`);
+        
+        // Tamaño y rotación aleatorios
+        const size = 0.7 + Math.random() * 0.6;
+        flake.style.fontSize = `${size}rem`;
+        flake.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        // Duración y retraso aleatorio
+        const duration = 0.8 + Math.random() * 0.4;
+        flake.style.animationDuration = `${duration}s`;
+        flake.style.animationDelay = `${Math.random() * 0.2}s`;
+        
+        container.appendChild(flake);
+        
+        // Eliminar el copo después de la animación
+        setTimeout(() => {
+            flake.remove();
+        }, duration * 1000);
+    }
+}
+
+// Configurar eventos para desktop y móvil
+document.querySelectorAll('.snow-click-effect').forEach(section => {
+    const container = section.querySelector('.snow-click-container');
+    
+    // Evento para mouse
+    section.addEventListener('mousedown', (e) => {
+        createSnowflakes(e, container);
+    });
+    
+    // Evento para pantallas táctiles
+    section.addEventListener('touchstart', (e) => {
+        // Prevenir el comportamiento táctil por defecto
+        e.preventDefault();
+        createSnowflakes(e.touches[0], container);
+    }, { passive: false });
+});
 
 // function actualizarTemporizador() {
 //     const fechaEvento = new Date('2025-10-10T21:30:00').getTime();
