@@ -81,7 +81,7 @@ h1, h2, h3, p {
 
 /* Efectos originales (se mantienen) */
 h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
     animation: glow 2s infinite alternate;
     line-height: 1.2;
