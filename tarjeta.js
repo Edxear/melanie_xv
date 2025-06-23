@@ -133,39 +133,6 @@ function createSectionSnowflakes() {
     });
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', function () {
-    // Iniciar temporizador
-    const temporizador = setInterval(actualizarTemporizador, 1000);
-    actualizarTemporizador();
-
-    // Crear contenedores para efectos si no existen
-    if (!document.getElementById('snowflakes')) {
-        const snowflakesContainer = document.createElement('div');
-        snowflakesContainer.id = 'snowflakes';
-        document.body.appendChild(snowflakesContainer);
-    }
-    
-    if (!document.getElementById('ice-crystals')) {
-        const iceContainer = document.createElement('div');
-        iceContainer.id = 'ice-crystals';
-        document.body.appendChild(iceContainer);
-    }
-
-    // Crear efectos de nieve y cristales
-    createSectionSnowflakes();
-    createSnowflakes();
-    createIceCrystals();
-
-    // Ajustar efectos al cambiar tamaño de pantalla
-    window.addEventListener('resize', function () {
-        document.querySelectorAll('.snowflake, .ice-crystal, .section-snowflake').forEach(el => el.remove());
-        document.querySelectorAll('.section-snowflakes').forEach(el => el.remove());
-        createSnowflakes();
-        createIceCrystals();
-        createSectionSnowflakes();
-    });
-});
 // Función para crear copos de nieve
 function createSnowflakes(event, container) {
     const symbols = ['❄', '❅', '❆', '✻', '✼'];
@@ -227,6 +194,40 @@ document.querySelectorAll('.snow-click-effect').forEach(section => {
         e.preventDefault();
         createSnowflakes(e.touches[0], container);
     }, { passive: false });
+});
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', function () {
+    // Iniciar temporizador
+    const temporizador = setInterval(actualizarTemporizador, 1000);
+    actualizarTemporizador();
+
+    // Crear contenedores para efectos si no existen
+    if (!document.getElementById('snowflakes')) {
+        const snowflakesContainer = document.createElement('div');
+        snowflakesContainer.id = 'snowflakes';
+        document.body.appendChild(snowflakesContainer);
+    }
+    
+    if (!document.getElementById('ice-crystals')) {
+        const iceContainer = document.createElement('div');
+        iceContainer.id = 'ice-crystals';
+        document.body.appendChild(iceContainer);
+    }
+
+    // Crear efectos de nieve y cristales
+    createSectionSnowflakes();
+    createSnowflakes();
+    createIceCrystals();
+
+    // Ajustar efectos al cambiar tamaño de pantalla
+    window.addEventListener('resize', function () {
+        document.querySelectorAll('.snowflake, .ice-crystal, .section-snowflake').forEach(el => el.remove());
+        document.querySelectorAll('.section-snowflakes').forEach(el => el.remove());
+        createSnowflakes();
+        createIceCrystals();
+        createSectionSnowflakes();
+    });
 });
 
 // function actualizarTemporizador() {
