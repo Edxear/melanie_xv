@@ -166,7 +166,54 @@ p {
 }
 
 /* Temporizador */
+
 #cuenta-regresiva {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    position: relative;
+    z-index: 2;
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan a múltiples líneas */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario en móviles */
+    padding: 10px 0; /* Añade un poco de espacio vertical */
+}
+
+.tiempo {
+    background: rgba(0, 0, 0, 0.3);
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    border-radius: 10px;
+    min-width: 70px; /* Reduce el ancho mínimo para dispositivos móviles */
+    font-size: 1.8rem; /* Ajusta el tamaño de la fuente */
+    font-weight: bold;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    flex-shrink: 0; /* Evita que los elementos se reduzcan */
+}
+
+.tiempo span {
+    display: block;
+    font-size: 1rem; /* Reduce el tamaño de la fuente de las etiquetas */
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+/* Media query para ajustes específicos en dispositivos móviles */
+@media (max-width: 600px) {
+    #cuenta-regresiva {
+        gap: 5px; /* Reduce el espacio entre elementos */
+    }
+    .tiempo {
+        min-width: 60px; /* Reduce aún más el ancho mínimo */
+        font-size: 1.5rem; /* Ajusta el tamaño de la fuente */
+        padding: 8px 10px;
+    }
+    .tiempo span {
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente de las etiquetas */
+    }
+}
+/* #cuenta-regresiva {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -192,7 +239,7 @@ p {
     font-size: 1.2rem;
     font-weight: normal;
     margin-top: 8px;
-}
+} */
 
 /* Mapa */
 .mapa-container {
