@@ -434,6 +434,54 @@
 //     });
 // });
 
+// Función para el reproductor de música
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('background-music');
+      const playBtn = document.getElementById('play-btn');
+      const playIcon = playBtn.querySelector('i');
+      let isPlaying = false;
+      
+      // Establecer volumen por defecto (50%)
+      audio.volume = 0.5;
+      
+      // Función para toggle play/pause
+      function togglePlay() {
+        if (isPlaying) {
+          audio.pause();
+          playIcon.className = 'fas fa-play';
+          playBtn.classList.remove('playing');
+        } else {
+          audio.play()
+            .then(() => {
+              playIcon.className = 'fas fa-pause';
+              playBtn.classList.add('playing');
+            })
+            .catch(error => {
+              console.log("La reproducción automática fue prevenida:", error);
+              // En algunos navegadores, se necesita interacción del usuario primero
+              alert("Por favor, haz clic en el botón de play para reproducir la música.");
+            });
+        }
+        isPlaying = !isPlaying;
+      }
+      
+      // Event listener para el botón de play
+      playBtn.addEventListener('click', togglePlay);
+      
+      // Si la música termina, resetear el botón
+      audio.addEventListener('ended', function() {
+        isPlaying = false;
+        playIcon.className = 'fas fa-play';
+        playBtn.classList.remove('playing');
+      });
+      
+      // Si hay un error al cargar la música
+      audio.addEventListener('error', function() {
+        console.error("Error al cargar el archivo de audio.");
+        playBtn.style.display = 'none'; // Ocultar botón si hay error
+      });
+    });
+
 function actualizarTemporizador() {
     const fechaEvento = new Date('2025-10-10T21:00:00').getTime();
     const ahora = new Date().getTime();
